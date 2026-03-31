@@ -1,0 +1,7 @@
+{
+  "name": "meu-app-tarefas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue-vite"
+}
