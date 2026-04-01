@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>Blank</ion-title>
+        <ion-title>Vini Inacio - 3° Info</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -14,15 +14,25 @@
       </ion-header>
 
       <div id="container">
-        <strong>Ready to create an app?</strong>
-        <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+        <strong>Visualizador de Tarefas</strong>
+        <ion-button @click="irParaTarefas">Ir para Tarefas</ion-button>
       </div>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+
+import { useIonRouter } from '@ionic/vue';
+
+const router = useIonRouter()
+
+const irParaTarefas = () => {
+  router.push('/tarefas')
+}
+
+
 </script>
 
 <style scoped>
