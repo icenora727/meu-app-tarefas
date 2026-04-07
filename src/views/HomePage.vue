@@ -12,16 +12,29 @@
           <IonTitle size="large">Blank</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <div id="container">
-        <strong>Visualizador de Tarefas</strong>
-        <IonButton expand="block" @click="irParaTarefas">Ir para Tarefas</IonButton>
-      </div>
+      <IonCard>
+        <IonCardHeader>
+          <IonCardTitle>Visualizador de Tarefas</IonCardTitle>
+        </IonCardHeader>
+        <IonCardContent>
+          <p>Gerencie Aqui suas tarefas!</p>
+          <IonButton expand="block" @click="irParaTarefas">Ir para Tarefas</IonButton>
+        </IonCardContent>
+      </IonCard>
+      <IonCard>
+        <IonCardHeader>
+          <IonCardTitle>Sobre</IonCardTitle>
+        </IonCardHeader>
+        <IonCardContent>
+          <p>Projeto feito com Ionic + Vue 3</p>
+        </IonCardContent>
+      </IonCard>
     </IonContent>
   </IonPage>
 </template>
 
 <script setup lang="ts">
-import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
 
 import { useIonRouter } from '@ionic/vue';
 
@@ -35,6 +48,10 @@ const irParaTarefas = () => {
 </script>
 
 <style scoped>
+p {
+  margin-bottom: 10px;
+}
+
 #container {
   text-align: center;
 
