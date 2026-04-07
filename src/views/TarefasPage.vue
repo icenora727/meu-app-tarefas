@@ -24,8 +24,8 @@
                 <IonIcon :icon="addOutline"></IonIcon>
             </IonButton>
 
-            <p v-if="tarefas.length === 0">
-                Nenhuma tarefa cadstrada. Adicione a primeira!
+            <p v-if="!tarefas.length" class="ion-text-center ion-padding">
+                Nenhuma tarefa cadastrada. Adicione a primeira!
             </p>
 
             <IonList>
