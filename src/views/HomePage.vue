@@ -15,7 +15,7 @@
 
       <div id="container">
         <strong>Visualizador de Tarefas</strong>
-        <ion-button @click="irParaTarefas">Ir para Tarefas</ion-button>
+        <ion-button expand="block" @click="irParaTarefas">Ir para Tarefas</ion-button>
       </div>
     </ion-content>
   </ion-page>

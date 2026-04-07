@@ -9,14 +9,47 @@
             </IonToolbar>
         </IonHeader>
         <IonContent>
-            <!-- Conteúdo da página aqui -->
+            <IonInput v-model="novaTarefa" placeholder="Digite uma Tarefa"/>
+
+            <IonButton expand="block" @click="adicionarTarefa">
+                Adicionar
+            </IonButton>
+
+            <p v-if="tarefas.length === 0">
+                Nenhuma tarefa cadstrada. Adicione a primeira!
+            </p>
+
+            <IonList>
+                <IonItem v-for="(tarefa, index) in tarefas" :key="index">
+                    <IonLabel>{{ tarefa }}</IonLabel>
+                    <IonButton color="danger" @click="removerTarefa(index)">
+                        Remover
+                    </IonButton>
+                </IonItem>
+            </IonList>
         </IonContent>
     </IonPage>
 </template>
 
 
 <script setup lang="ts">
-import { IonBackButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonBackButton, IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+
+import { ref } from 'vue';
+
+const tarefas = ref<string[]>([])
+const novaTarefa = ref('')
+
+const adicionarTarefa = () => {
+    if (novaTarefa.value.trim() === '') return
+
+    tarefas.value.push(novaTarefa.value)
+    novaTarefa.value = ''
+}
+
+const removerTarefa = (index: number) => {
+    tarefas.value.splice(index, 1)
+}
 </script>
 
 
