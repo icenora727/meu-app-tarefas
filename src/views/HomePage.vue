@@ -1,24 +1,24 @@
 <template>
-  <ion-page>
-    <ion-header :translucent="true">
-      <ion-toolbar>
-        <ion-title>Vini Inacio - 3° Info</ion-title>
-      </ion-toolbar>
-    </ion-header>
+  <IonPage>
+    <IonHeader :translucent="true">
+      <IonToolbar>
+        <IonTitle>Vini Inacio - 3° Info</IonTitle>
+      </IonToolbar>
+    </IonHeader>
 
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Blank</ion-title>
-        </ion-toolbar>
-      </ion-header>
+    <IonContent :fullscreen="true">
+      <IonHeader collapse="condense">
+        <IonToolbar>
+          <IonTitle size="large">Blank</IonTitle>
+        </IonToolbar>
+      </IonHeader>
 
       <div id="container">
         <strong>Visualizador de Tarefas</strong>
-        <ion-button expand="block" @click="irParaTarefas">Ir para Tarefas</ion-button>
+        <IonButton expand="block" @click="irParaTarefas">Ir para Tarefas</IonButton>
       </div>
-    </ion-content>
-  </ion-page>
+    </IonContent>
+  </IonPage>
 </template>
 
 <script setup lang="ts">
