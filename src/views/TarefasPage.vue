@@ -9,10 +9,10 @@
             </IonToolbar>
         </IonHeader>
         <IonContent>
-            <IonInput v-model="novaTarefa" placeholder="Digite uma Tarefa"/>
+            <IonInput v-model="novaTarefa" placeholder="Digite uma Tarefa" label="Nome da Tarefa" labelPlacement="floating"/>
 
-            <IonButton expand="block" @click="adicionarTarefa">
-                Adicionar
+            <IonButton expand="block" @click="adicionarTarefa" fill="solid" color="primary">
+                <IonIcon :icon="addOutline"></IonIcon>
             </IonButton>
 
             <p v-if="tarefas.length === 0">
@@ -22,8 +22,8 @@
             <IonList>
                 <IonItem v-for="(tarefa, index) in tarefas" :key="index">
                     <IonLabel>{{ tarefa }}</IonLabel>
-                    <IonButton color="danger" @click="removerTarefa(index)">
-                        Remover
+                    <IonButton color="danger" @click="removerTarefa(index)" fill="clear" slot="end">
+                        <IonIcon :icon="trashOutline"></IonIcon>
                     </IonButton>
                 </IonItem>
             </IonList>
@@ -33,7 +33,8 @@
 
 
 <script setup lang="ts">
-import { IonBackButton, IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonBackButton, IonButton, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { trashOutline, addOutline } from 'ionicons/icons';
 
 import { ref } from 'vue';
 
