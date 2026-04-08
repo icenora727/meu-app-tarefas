@@ -43,7 +43,7 @@
                     <IonList>
                         <IonItem v-for="(tarefa, index) in tarefas" :key="index">
                             <IonLabel>{{ tarefa }}</IonLabel>
-                            <IonButton color="danger" @click="removerTarefa(index)" fill="clear" slot="end">
+                            <IonButton color="danger" @click="remover(tarefa)" fill="clear" slot="end">
                                 <IonIcon :icon="trashOutline"></IonIcon>
                             </IonButton>
                         </IonItem>
@@ -62,28 +62,39 @@ import { IonBackButton, IonButton, IonCard, IonCardContent, IonCardHeader, IonCo
 
 import { trashOutline, addOutline } from 'ionicons/icons';
 
-import { computed, ref } from 'vue';
+import { useTarefas } from '@/composables/useTarefas';
 
-const tarefas = ref<string[]>([])
-const novaTarefa = ref('')
+const {
+    tarefas,
+    pendentes,
+    adicionar,
+    remover
+} = useTarefas()
 
-const adicionarTarefa = () => {
-    tocado.value = true
-    if (erroTarefa.value) return
-    if (novaTarefa.value.trim() === '') return
 
-    tarefas.value.push(novaTarefa.value)
-    novaTarefa.value = ''
-    tocado.value = false
-}
+// import { computed, ref } from 'vue';
 
-const removerTarefa = (index: number) => {
-    tarefas.value.splice(index, 1)
-}
+// const tarefas = ref<string[]>([])
+// const novaTarefa = ref('')
 
-const erroTarefa = computed(() =>
-    !novaTarefa.value.trim() ? "Campo Obrigatório" : "")
-const tocado = ref(false)
+// const adicionarTarefa = () => {
+//     tocado.value = true
+//     if (erroTarefa.value) return
+//     if (novaTarefa.value.trim() === '') return
+
+//     tarefas.value.push(novaTarefa.value)
+//     novaTarefa.value = ''
+//     tocado.value = false
+// }
+
+// const removerTarefa = (index: number) => {
+//     tarefas.value.splice(index, 1)
+// }
+
+// const erroTarefa = computed(() =>
+//     !novaTarefa.value.trim() ? "Campo Obrigatório" : "")
+// const tocado = ref(false)
+
 </script>
 
 
