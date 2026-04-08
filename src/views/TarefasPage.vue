@@ -41,9 +41,9 @@
                     </p>
 
                     <IonList>
-                        <IonItem v-for="(tarefa, index) in tarefas" :key="index">
+                        <IonItem v-for="(tarefa, id) in tarefas" :key="id">
                             <IonLabel>{{ tarefa }}</IonLabel>
-                            <IonButton color="danger" @click="remover(tarefa)" fill="clear" slot="end">
+                            <IonButton color="danger" @click="removerTarefa(id)" fill="clear" slot="end">
                                 <IonIcon :icon="trashOutline"></IonIcon>
                             </IonButton>
                         </IonItem>
@@ -66,9 +66,11 @@ import { useTarefas } from '@/composables/useTarefas';
 
 const {
     tarefas,
-    pendentes,
-    adicionar,
-    remover
+    novaTarefa,
+    tocado,
+    erroTarefa,
+    adicionarTarefa,
+    removerTarefa
 } = useTarefas()
 
 
