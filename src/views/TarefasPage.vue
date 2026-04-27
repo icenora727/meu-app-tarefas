@@ -66,12 +66,22 @@ import { useTarefas } from '@/composables/useTarefas';
 
 const {
     tarefas,
-    novaTarefa,
+    busca,
+    filtroAtivo,
+    filtradas,
+    totalPendentes,
     tocado,
     erroTarefa,
     adicionarTarefa,
-    removerTarefa
+    removerTarefa,
+    concluir
 } = useTarefas()
+
+const novaTarefa = ref('')
+function adicionarNova() {
+    adicionar(novaTarefa.value)
+    novaTarefa.value = ''
+}
 
 
 // import { computed, ref } from 'vue';
