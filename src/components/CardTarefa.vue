@@ -1,41 +1,37 @@
-           <template>
-            <IonCard>
-                <IonCardHeader>
-                    <IonCardTitle>
-                        Minhas Tarefas ({{ tarefas.length }})
-                    </IonCardTitle>
-                </IonCardHeader>
-
-                <IonCardContent>
-                    <p v-if="!tarefas.length" class="ion-text-center ion-padding">
-                        Nenhuma tarefa cadastrada. Adicione a primeira!
-                    </p>
-
-                    <IonList>
-                        <IonItem v-for="(tarefa, id) in tarefas" :key="id">
-                            <IonLabel>{{ tarefa }}</IonLabel>
-                            <IonButton color="danger" @click="removerTarefa(id)" fill="clear" slot="end">
-                                <IonIcon :icon="trashOutline"></IonIcon>
-                            </IonButton>
-                        </IonItem>
-                    </IonList>
-
-                </IonCardContent>
-            </IonCard>
-        </template>
-
 <script setup lang="ts">
-import { IonBackButton, IonButton, IonCard, IonCardContent, IonCardHeader, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButton, IonCardContent, IonIcon, IonItem } from "@ionic/vue";
+import { trashOutline, checkmarkCircle, ellipseOutline } from "ionicons/icons";
 
-import { trashOutline, addOutline } from 'ionicons/icons';
+interface Tarefa {
+  id: number;
+  texto: string;
+  feita: boolean;
+}
 
-import { useTarefas } from '@/composables/useTarefas';
+const props = defineProps<{ tarefa: Tarefa }>();
+const emit = defineEmits<{
+  remover: [id: number];
+  concluir: [id: number];
+}>();
+</script>
 
-const {
-    tarefas,
-    novaTarefa,
-    tocado,
-    erroTarefa,
-    adicionarTarefa,
-    removerTarefa
-} = useTarefas()
+<template>
+  <IonCard>
+    <IonCardContent>
+      <IonItem lines="none">
+        <IonIcon
+          slot="start"
+          :icon="props.tarefa.feita ? checkmarkCircle : ellipseOutline"
+          :color="props.tarefa.feita ? 'success' : 'medium'"
+          @click="emit('concluir', props.tarefa.id)"
+        />
+        <IonLabel :style="props.tarefa.feita ? 'text-decoration:line-through' : ''"></IonLabel>
+
+        <IonButton slot='end' fill ='clear' color='danger' @click="emit('remover', props.tarefa.id)">
+            <IonIcon :icon='trashOutline'/>
+        </IonButton>
+        
+      </IonItem>
+    </IonCardContent>
+  </IonCard>
+</template>
