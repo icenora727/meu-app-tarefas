@@ -1,4 +1,4 @@
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 
 interface Tarefa {
   id: number;
@@ -27,6 +27,12 @@ export function useTarefas() {
   const totalPendentes = computed(
     () => tarefas.value.filter(t => !t.feita).length
   )
+
+  watch(totalPendentes, (valor) => {
+    if (valor === 0 && tarefas.value.length > 0) {
+      alert('Parabéns! Todas as tarefas foram concluídas!')
+    }
+  })
 
   function adicionar(texto: string) {
     if (!texto.trim()) return
