@@ -2,9 +2,9 @@
     <IonPage>
         <IonHeader>
             <IonToolbar>
-                <ion-buttons slot="start">
-                    <ion-back-button defaultHref="Home" />
-                </ion-buttons>
+                <IonButtons slot="start">
+                    <IonBackButton defaultHref="/" />
+                </IonButtons>
                 <IonTitle>Tarefas</IonTitle>
             </IonToolbar>
         </IonHeader>
@@ -17,37 +17,47 @@
                 </IonCardHeader>
 
                 <IonCardContent>
-                    <IonInput v-model="novaTarefa" placeholder="Digite uma Tarefa" label="Nome da Tarefa"
-                        labelPlacement="floating" :clear-input="true" :errorText="erroTarefa"
-                        :class="{ 'ion-invalid ion-touched': tocado && erroTarefa }" @ionBlur="tocado = true" />
+                    <IonInput v-model="novaTarefa" placeholder="Digite uma Tarefa"/>
 
-                    <IonButton expand="block" @click="adicionarTarefa" fill="solid" color="primary">
+                    <IonButton expand="block" @click="adicionarNova">
 
-                        <IonIcon :icon="addOutline">Adicionar</IonIcon>
+                        <IonIcon :icon="addOutline" slot="start">Adicionar</IonIcon>
+
                     </IonButton>
                 </IonCardContent>
             </IonCard>
 
+            <IonInput v-model="busca" placeholder="Buscar Tarefa..." />
+
+            <IonSegment v-model="filtroAtivo">
+                <IonSegmentButton value="todas">Todas</IonSegmentButton>
+                <IonSegmentButton value="pendentes">Pendentes</IonSegmentButton>
+                <IonSegmentButton value="feitas">Feitas</IonSegmentButton>
+            </IonSegment>
+
+            <p>Pendentes: {{ totalPendentes }}</p>
+
+
             <IonCard>
                 <IonCardHeader>
                     <IonCardTitle>
-                        Minhas Tarefas ({{ tarefas.length }})
+                        Minhas Tarefas ({{ filtradas.length }})
                     </IonCardTitle>
                 </IonCardHeader>
 
                 <IonCardContent>
-                    <p v-if="!tarefas.length" class="ion-text-center ion-padding">
-                        Nenhuma tarefa cadastrada. Adicione a primeira!
+                    <p v-if="!filtradas.length" class="ion-text-center ion-padding">
+                        Nenhuma tarefa encontrada.
                     </p>
 
-                    <IonList>
-                        <IonItem v-for="(tarefa, id) in tarefas" :key="id">
-                            <IonLabel>{{ tarefa }}</IonLabel>
-                            <IonButton color="danger" @click="removerTarefa(id)" fill="clear" slot="end">
-                                <IonIcon :icon="trashOutline"></IonIcon>
-                            </IonButton>
-                        </IonItem>
-                    </IonList>
+                    <CardTarefa
+                    v-for="t in filtradas"
+                    :key="t.id"
+                    :tarefa="t"
+                    @remover="remover"
+                    @concluir="concluir"
+                    >
+                    </CardTarefa>
 
                 </IonCardContent>
             </IonCard>
@@ -58,56 +68,31 @@
 
 
 <script setup lang="ts">
-import { IonBackButton, IonButton, IonCard, IonCardContent, IonCardHeader, IonContent, IonHeader, IonIcon, IonInput, IonItem, IonLabel, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 
-import { trashOutline, addOutline } from 'ionicons/icons';
+import { ref } from 'vue';
+
+import { IonSegment, IonSegmentButton, IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonContent, IonHeader, IonIcon, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+
+import { addOutline } from 'ionicons/icons';
 
 import { useTarefas } from '@/composables/useTarefas';
+import CardTarefa from '@/components/CardTarefa.vue';
 
 const {
-    tarefas,
     busca,
     filtroAtivo,
     filtradas,
     totalPendentes,
-    tocado,
-    erroTarefa,
-    adicionarTarefa,
-    removerTarefa,
+    adicionar,
+    remover,
     concluir
 } = useTarefas()
 
 const novaTarefa = ref('')
+
 function adicionarNova() {
     adicionar(novaTarefa.value)
     novaTarefa.value = ''
 }
 
-
-// import { computed, ref } from 'vue';
-
-// const tarefas = ref<string[]>([])
-// const novaTarefa = ref('')
-
-// const adicionarTarefa = () => {
-//     tocado.value = true
-//     if (erroTarefa.value) return
-//     if (novaTarefa.value.trim() === '') return
-
-//     tarefas.value.push(novaTarefa.value)
-//     novaTarefa.value = ''
-//     tocado.value = false
-// }
-
-// const removerTarefa = (index: number) => {
-//     tarefas.value.splice(index, 1)
-// }
-
-// const erroTarefa = computed(() =>
-//     !novaTarefa.value.trim() ? "Campo Obrigatório" : "")
-// const tocado = ref(false)
-
 </script>
-
-
-<style scoped></style>
