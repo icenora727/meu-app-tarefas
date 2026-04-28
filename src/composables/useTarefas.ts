@@ -13,11 +13,13 @@ export function useTarefas() {
   //computed: filtra por texto de busca E pelo filtro ativo
   const filtradas = computed( () => {
     const termo = busca.value.toLowerCase()
+
     return tarefas.value
     .filter(t => t.texto.toLowerCase().includes(termo))
     .filter(t => {
       if (filtroAtivo.value === 'pendentes') return !t.feita
       if (filtroAtivo.value === 'feitas') return t.feita
+      return true
     })
   })
 
