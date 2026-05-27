@@ -2,7 +2,7 @@
   <IonPage>
     <IonHeader :translucent="true">
       <IonToolbar>
-        <IonTitle>Vini Inacio - 3° Info</IonTitle>
+        <IonTitle>Gabi - 3° Info</IonTitle>
       </IonToolbar>
     </IonHeader>
 

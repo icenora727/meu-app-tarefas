@@ -1,4 +1,5 @@
 import { computed, ref } from "vue";
+import { alertController } from "@ionic/vue";
 
 interface Tarefa {
   id: number;
@@ -33,8 +34,22 @@ export function useTarefas() {
     tarefas.value.push({ id: Date.now(), texto, feita: false})
   }
 
-  function remover(id: number) {
-    tarefas.value = tarefas.value.filter(t => t.id !== id)
+  async function remover(id: number) {
+    const alert = await alertController.create({
+      header: 'Excluir Tarefa?',
+      message: 'Esta ação não pode ser desfeita.',
+      buttons: [
+        { text: 'Cancelar', role: 'cancel' },
+        {
+          text: 'Excluir',
+          role: 'destructive',
+          handler: () => {
+            tarefas.value = tarefas.value.filter(t => t.id !== id)
+          }
+        }
+      ]
+    })
+    await alert.present()
   }
 
   function concluir(id: number) {
