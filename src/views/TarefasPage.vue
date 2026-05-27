@@ -2,9 +2,6 @@
     <IonPage>
         <IonHeader>
             <IonToolbar>
-                <IonButtons slot="start">
-                    <IonBackButton defaultHref="/" />
-                </IonButtons>
                 <IonTitle>Tarefas</IonTitle>
             </IonToolbar>
         </IonHeader>
@@ -71,7 +68,7 @@
 
 import { ref } from 'vue';
 
-import { IonSegment, IonSegmentButton, IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonContent, IonHeader, IonIcon, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonSegment, IonSegmentButton, IonButton, IonCard, IonCardContent, IonCardHeader, IonContent, IonHeader, IonIcon, IonInput, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 
 import { addOutline } from 'ionicons/icons';
 

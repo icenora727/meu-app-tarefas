@@ -14,15 +14,6 @@
       </IonHeader>
       <IonCard>
         <IonCardHeader>
-          <IonCardTitle>Visualizador de Tarefas</IonCardTitle>
-        </IonCardHeader>
-        <IonCardContent>
-          <p>Gerencie Aqui suas tarefas!</p>
-          <IonButton expand="block" @click="irParaTarefas">Ir para Tarefas</IonButton>
-        </IonCardContent>
-      </IonCard>
-      <IonCard>
-        <IonCardHeader>
           <IonCardTitle>Sobre</IonCardTitle>
         </IonCardHeader>
         <IonCardContent>
@@ -34,17 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
-
-import { useIonRouter } from '@ionic/vue';
-
-const router = useIonRouter()
-
-const irParaTarefas = () => {
-  router.push('/tarefas')
-}
-
-
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
 </script>
 
 <style scoped>
