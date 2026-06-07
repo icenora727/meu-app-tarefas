@@ -17,7 +17,12 @@
           <IonCardTitle>Sobre</IonCardTitle>
         </IonCardHeader>
         <IonCardContent>
-          <p>Projeto feito com Ionic + Vue 3</p>
+          <IonInput
+          v-model="nome"
+          label="Seu nome"
+          label-placement="floating"
+          fill="outline"
+          />
         </IonCardContent>
       </IonCard>
     </IonContent>
@@ -25,7 +30,9 @@
 </template>
 
 <script setup lang="ts">
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput } from '@ionic/vue';
+import { useUsuario } from '@/composables/useUsuario';
+const { nome } = useUsuario()
 </script>
 
 <style scoped>

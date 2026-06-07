@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IonButton, IonCardContent, IonIcon, IonItem } from "@ionic/vue";
+import { IonButton, IonCardContent, IonIcon, IonItem, IonCard, IonLabel } from "@ionic/vue";
 import { trashOutline, checkmarkCircle, ellipseOutline } from "ionicons/icons";
 
 interface Tarefa {
@@ -12,6 +12,7 @@ const props = defineProps<{ tarefa: Tarefa }>();
 const emit = defineEmits<{
   remover: [id: number];
   concluir: [id: number];
+  detalhes: [id: number];
 }>();
 </script>
 
@@ -28,6 +29,13 @@ const emit = defineEmits<{
         <IonLabel :style="props.tarefa.feita ? 'text-decoration:line-through' : ''">
             {{ props.tarefa.texto }}
         </IonLabel>
+
+        <IonButton @click="
+        console.log('emitindo', props.tarefa.id),
+        emit('detalhes', props.tarefa.id)
+        ">
+          Abrir Detalhes
+        </IonButton>
 
         <IonButton slot='end' fill ='clear' color='danger' @click="emit('remover', props.tarefa.id)">
             <IonIcon :icon='trashOutline'/>

@@ -7,10 +7,11 @@ interface Tarefa {
   feita: boolean;
 }
 
+const tarefas = ref<Tarefa[]>([]);
+const busca = ref('')
+const filtroAtivo = ref<'todas' | 'pendentes' | 'feitas'>('todas')
+
 export function useTarefas() {
-  const tarefas = ref<Tarefa[]>([]);
-  const busca = ref('')
-  const filtroAtivo = ref<'todas' | 'pendentes' | 'feitas'>('todas')
   //computed: filtra por texto de busca E pelo filtro ativo
   const filtradas = computed( () => {
     const termo = busca.value.toLowerCase()

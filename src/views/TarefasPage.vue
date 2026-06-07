@@ -21,6 +21,10 @@
                         <IonIcon :icon="addOutline" slot="start">Adicionar</IonIcon>
 
                     </IonButton>
+
+                    <IonButton @click="router.push('/tabs/tarefas/123')">
+TESTEEEEEEE
+                    </IonButton>
                 </IonCardContent>
             </IonCard>
 
@@ -51,6 +55,7 @@
                     v-for="t in filtradas"
                     :key="t.id"
                     :tarefa="t"
+                    @detalhes="abrirDetalhes"
                     @remover="remover"
                     @concluir="concluir"
                     >
@@ -65,6 +70,9 @@
 
 
 <script setup lang="ts">
+
+import { useIonRouter } from '@ionic/vue';
+const router = useIonRouter()
 
 import { ref } from 'vue';
 
@@ -90,6 +98,11 @@ const novaTarefa = ref('')
 function adicionarNova() {
     adicionar(novaTarefa.value)
     novaTarefa.value = ''
+}
+
+function abrirDetalhes(id: number) {
+    console.log('indo para', id)
+    router.replace(`/tabs/tarefas/${id}`)
 }
 
 </script>
